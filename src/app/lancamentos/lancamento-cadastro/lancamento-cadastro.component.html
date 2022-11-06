@@ -1,0 +1,58 @@
+<div class="container">
+  <form #lancamentoForm="ngForm" >
+    <div class="grid">
+      <div class="col-12">
+        <h1>Novo Lançamento</h1>
+      </div>
+      <div class="col-12">
+        <p-selectButton [options]="tipos" #tipo></p-selectButton>
+      </div>
+      <div class="col-6 md:col-3 p-fluid">
+        <label>Vencimento</label>
+        <p-calendar name="vencimento" ngModel #vencimento="ngModel" dateFormat="dd/mm/yy" [inline]="false" [readonlyInput]="false" [showIcon]="true"></p-calendar>
+        <app-message [control]="vencimento.control" error="required" text="Informe uma data de vencimento"></app-message>
+      </div>
+      <div class="col-6 md:col-3 p-fluid">
+        <label>{{tipo.value === 'RECEITA' ? 'Recebimento':'Pagamento' }}</label>
+        <input pInputText type="text">
+      </div>
+      <div class="col-12 md:col-9 p-fluid">
+        <label>Descrição {{descricao.errors | json}}</label>
+        <input pInputText type="text" name="descricao" ngModel #descricao="ngModel" required minlength="5">
+        <!-- <p-message *ngIf="descricao.hasError('required')&&descricao.dirty" severity="error" text="Campo Obrigatório"> </p-message> -->
+        <!-- <p-message *ngIf="descricao.hasError('minlength')&&descricao.dirty" severity="error" text="Comprimento mínimo Atual: {{descricao.errors?.['minlength'].actualLength}} Requirido: {{descricao.errors?.['minlength'].requiredLength}}"> </p-message> -->
+
+        <app-message [control]="descricao.control" error="required" text="Informe uma descrição"></app-message>
+        <app-message [control]="descricao.control" error="minlength" text="Comprimento mínimo Atual: {{descricao.errors?.['minlength']?.actualLength}} Requirido: {{descricao.errors?.['minlength']?.requiredLength}}"></app-message>
+      </div>
+      <div class="col-12 md:col-3 p-fluid">
+        <label>Valor</label>
+        <input pInputText ngModel name="valor" #valor="ngModel" type="text" placeholder="R$ 0,00" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative: false}">
+      </div>
+
+      <div class="col-12 md:col-3 p-fluid">
+          <label style="display: block">Categoria  {{categoria.value}}</label>
+          <p-dropdown [options]="categorias" optionLabel="label" optionValue="value" placeholder="Selecione" #categoria></p-dropdown>
+      </div>
+
+      <div class="col-12 md:col-6 p-fluid">
+        <label>Pessoa {{pessoa.value}}</label>
+        <p-dropdown [options]="pessoas" optionLabel="label" optionValue="value" placeholder="Selecione" #pessoa [filter]="true"></p-dropdown>
+      </div>
+      <div class="col-12 p-fluid">
+        <label style="display: block">Observação</label>
+        <textarea pInputTextarea rows="5"></textarea>
+      </div>
+      <div class="col-12">
+        <span class="p-buttonset">
+          <button pButton type="submit" label=" Salvar " class="p-button-outlined p-button-rounded" [disabled]="!lancamentoForm.valid" pTooltip="Salvar" tooltipPosition="top"></button>
+          <button pButton type="button" label=" Novo " class="p-button-outlined p-button-rounded" pTooltip="Novo" tooltipPosition="top"></button>
+        </span>
+
+
+
+        <a href="javascript:;">Voltar para a pesquisa</a>
+      </div>
+    </div>
+  </form>
+</div>
