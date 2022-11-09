@@ -12,9 +12,11 @@
       </div>
       <div class="col-12">
         <Label style="display: block;">Vencimento</Label>
-        <input type="text" pInputText style="width: 110px;">
-        <label>até</label>
-        <input type="text" pInputText style="width: 110px;">
+        <p-calendar name="vencimentoInicio" [(ngModel)]="dataVencimentoInicio" dateFormat="dd/mm/yy" [inputStyle]="{width:'110px'}" [inline]="false" [readonlyInput]="false" [showIcon]="false"></p-calendar>
+        <!-- <input type="text" pInputText style="width: 110px;"> -->
+        <label> até </label>
+        <p-calendar name="vencimentoFim" [(ngModel)]="dataVencimentoFim" dateFormat="dd/mm/yy" [inputStyle]="{width:'110px'}" [inline]="false" [readonlyInput]="false" [showIcon]="false"></p-calendar>
+        <!-- <input type="text" pInputText style="width: 110px;"> -->
       </div>
       <div class="col-12">
         <button pButton type="submit" label="Pesquisar" class="p-button-outlined"></button>
@@ -49,6 +51,13 @@
             <td class="col-acoes">
                 <button pButton class="p-button-outlined p-button-rounded" icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></button>
                 <button pButton class="p-button-outlined p-button-rounded" icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"></button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="6">
+              Nenhum lançamento encontrado
             </td>
           </tr>
         </ng-template>
