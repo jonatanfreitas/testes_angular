@@ -1,5 +1,6 @@
 import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
 import { Component, OnInit } from '@angular/core';
+import { LazyLoadEvent } from 'primeng/api';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lancamentos-pesquisa.component.css']
 })
 export class LancamentosPesquisaComponent implements OnInit {
-
+  totalRegistros =0;
   filtro = new LancamentoFiltro();
   // descricao:string='';
   // dataVencimentoInicio?:Date;
@@ -17,10 +18,11 @@ export class LancamentosPesquisaComponent implements OnInit {
   constructor(private lancamentoService: LancamentoService){}
 
   ngOnInit() {
-    this.pesq();
+    //this.pesq();
   }
 
-  pesq(){
+  pesq(pagina=0){
+    this.filtro.pagina=pagina;
     // const filtro: LancamentoFiltro = {
     //   descricao: this.descricao,
     //   dataVencimentoInicio: this.dataVencimentoInicio,
@@ -28,9 +30,14 @@ export class LancamentosPesquisaComponent implements OnInit {
     // };
     this.lancamentoService.pesquisar(this.filtro)
       // .then((lanc) => {this.lancamentos=lanc});
-      .then(resultado => {this.lancamentos=resultado.lanc;});
+      .then(resultado => {this.lancamentos=resultado.lanc;
+                          this.totalRegistros=resultado.total;
+                              });
   }
-
+  aoMudarPagina(event: LazyLoadEvent){
+    const pagina = event!.first! / event!.rows!;
+    this.pesq(pagina);
+  }
 //   { tipo: 'DESPESA', descricao: 'Compra de pão', dataVencimento: new Date(2017, 5, 30),
 //   dataPagamento: null, valor: 4.55, pessoa: 'Padaria do José' },
 // { tipo: 'RECEITA', descricao: 'Venda de software', dataVencimento: new Date(2017, 5, 10),
