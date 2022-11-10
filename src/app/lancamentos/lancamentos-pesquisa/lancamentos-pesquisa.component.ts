@@ -8,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LancamentosPesquisaComponent implements OnInit {
 
-  descricao:string='';
-  dataVencimentoInicio?:Date;
-  dataVencimentoFim?:Date;
+  filtro = new LancamentoFiltro();
+  // descricao:string='';
+  // dataVencimentoInicio?:Date;
+  // dataVencimentoFim?:Date;
   lancamentos = [];
 
   constructor(private lancamentoService: LancamentoService){}
@@ -20,13 +21,14 @@ export class LancamentosPesquisaComponent implements OnInit {
   }
 
   pesq(){
-    const filtro: LancamentoFiltro = {
-      descricao: this.descricao,
-      dataVencimentoInicio: this.dataVencimentoInicio,
-      dataVencimentoFim: this.dataVencimentoFim
-    };
-    this.lancamentoService.pesquisar(filtro)
-      .then((lanc) => {this.lancamentos=lanc});
+    // const filtro: LancamentoFiltro = {
+    //   descricao: this.descricao,
+    //   dataVencimentoInicio: this.dataVencimentoInicio,
+    //   dataVencimentoFim: this.dataVencimentoFim
+    // };
+    this.lancamentoService.pesquisar(this.filtro)
+      // .then((lanc) => {this.lancamentos=lanc});
+      .then(resultado => {this.lancamentos=resultado.lanc;});
   }
 
 //   { tipo: 'DESPESA', descricao: 'Compra de pão', dataVencimento: new Date(2017, 5, 30),
