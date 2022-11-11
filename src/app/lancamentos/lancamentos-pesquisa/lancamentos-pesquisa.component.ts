@@ -1,7 +1,8 @@
 import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
-
+import { ThisReceiver } from '@angular/compiler';
+import { Table } from 'primeng/table';
 @Component({
   selector: 'app-lancamentos-pesquisa',
   templateUrl: './lancamentos-pesquisa.component.html',
@@ -14,7 +15,7 @@ export class LancamentosPesquisaComponent implements OnInit {
   // dataVencimentoInicio?:Date;
   // dataVencimentoFim?:Date;
   lancamentos = [];
-
+  @ViewChild('tabela') grid!: Table;
   constructor(private lancamentoService: LancamentoService){}
 
   ngOnInit() {
@@ -37,6 +38,14 @@ export class LancamentosPesquisaComponent implements OnInit {
   aoMudarPagina(event: LazyLoadEvent){
     const pagina = event!.first! / event!.rows!;
     this.pesq(pagina);
+  }
+  excluir(lancamento:any){
+    this.lancamentoService.excluir(lancamento.codigo)
+    . then(()=>{
+      this.grid.reset();
+    }
+
+    )
   }
 //   { tipo: 'DESPESA', descricao: 'Compra de pão', dataVencimento: new Date(2017, 5, 30),
 //   dataPagamento: null, valor: 4.55, pessoa: 'Padaria do José' },

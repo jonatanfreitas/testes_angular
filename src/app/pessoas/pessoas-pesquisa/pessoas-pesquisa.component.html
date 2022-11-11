@@ -1,5 +1,6 @@
 
 <div class="container">
+  <form autocomplete="off" (ngSubmit)="pesq()">
   <div class="grid">
     <div class="ui-g-12">
       <h1>Pessoas</h1>
@@ -7,16 +8,18 @@
     <div class="col-12 p-fluid">
       <label >Nome</label>
       <p></p>
-      <input pInputText type="text"  >
+      <input pInputText type="text" name="nome" [(ngModel)]="filtro.nome">
       <p></p>
     </div>
     <div class="col-12">
-      <button pButton type="button" label="Pesquisar" class="p-button-outlined"></button>
+      <button pButton type="submit" label="Pesquisar" class="p-button-outlined"></button>
     </div>
   </div>
+  </form>
   <div class="grid">
     <div class="ui-g-12">
-      <p-table [value]="pessoas" [paginator]="true" [rows]="3"  [responsive]="true">
+      <p-table [value]="pessoas" [paginator]="true" [rows]="filtro.itensPorPagina"
+      [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)" [responsive]="true">
         <ng-template pTemplate="header">
           <tr>
             <th class="col-data-header">Nome</th>
@@ -43,6 +46,13 @@
             <td class="col-acoes">
                 <button pButton class="p-button-outlined p-button-rounded" icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></button>
                 <button pButton class="p-button-outlined p-button-rounded" icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"></button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="6">
+              Nenhum lançamento encontrado
             </td>
           </tr>
         </ng-template>
