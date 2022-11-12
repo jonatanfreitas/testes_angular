@@ -1,8 +1,9 @@
 import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { LazyLoadEvent } from 'primeng/api';
+import { LazyLoadEvent, ConfirmationService } from 'primeng/api';
 import { ThisReceiver } from '@angular/compiler';
 import { Table } from 'primeng/table';
+import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-lancamentos-pesquisa',
   templateUrl: './lancamentos-pesquisa.component.html',
@@ -16,7 +17,9 @@ export class LancamentosPesquisaComponent implements OnInit {
   // dataVencimentoFim?:Date;
   lancamentos = [];
   @ViewChild('tabela') grid!: Table;
-  constructor(private lancamentoService: LancamentoService){}
+  constructor(private lancamentoService: LancamentoService,
+              private messageService: MessageService,
+              private confirmation:ConfirmationService){}
 
   ngOnInit() {
     //this.pesq();
@@ -39,10 +42,20 @@ export class LancamentosPesquisaComponent implements OnInit {
     const pagina = event!.first! / event!.rows!;
     this.pesq(pagina);
   }
+
+  confirmarExclusao(lancamento:any){
+    this.confirmation.confirm({
+      message:'Tem certeza que deseja excluir?',
+      accept:()=>{this.excluir(lancamento);}
+    });
+  }
+
   excluir(lancamento:any){
+
     this.lancamentoService.excluir(lancamento.codigo)
-    . then(()=>{
-      this.grid.reset();
+    .then(()=>{
+      if (this.grid.first===0){this.pesq();} else {this.grid.reset();}
+      this.messageService.add({  severity: 'success', detail: 'Lançamento excluído com sucesso!' })
     }
 
     )

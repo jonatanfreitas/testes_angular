@@ -25,7 +25,10 @@ import { PessoaCadastroComponent } from './pessoas/pessoa-cadastro/pessoa-cadast
 import {InputMaskModule} from 'primeng/inputmask';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
 
 
 @NgModule({
@@ -50,9 +53,11 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     LancamentosModule,
     PessoasModule,
-    CoreModule,HttpClientModule
+    CoreModule,HttpClientModule,
+    ToastModule,
+    ConfirmDialogModule
   ],
-  providers: [LancamentoService,PessoaService],
+  providers: [LancamentoService,PessoaService,MessageService,ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
