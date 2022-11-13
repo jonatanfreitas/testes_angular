@@ -5,7 +5,7 @@ import { CoreModule } from './core/core.module';
 import { PessoasModule } from './pessoas/pessoas.module';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { SelectButton } from 'primeng/selectbutton';
-import { NgModule } from '@angular/core';
+import { NgModule,LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -25,17 +25,22 @@ import { PessoaCadastroComponent } from './pessoas/pessoa-cadastro/pessoa-cadast
 import {InputMaskModule} from 'primeng/inputmask';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { MessageService } from 'primeng/api';
+
 import { ToastModule } from 'primeng/toast';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
+import { registerLocaleData } from '@angular/common';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import localePt from '@angular/common/locales/pt';
 
+registerLocaleData(localePt);
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader { return new TranslateHttpLoader(http);}
 @NgModule({
-  declarations: [
-    AppComponent
-
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -55,9 +60,20 @@ import {ConfirmationService} from 'primeng/api';
     PessoasModule,
     CoreModule,HttpClientModule,
     ToastModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
-  providers: [LancamentoService,PessoaService,MessageService,ConfirmationService],
+  providers: [LancamentoService,
+              PessoaService,
+              MessageService,
+              ConfirmationService,
+              TranslateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
