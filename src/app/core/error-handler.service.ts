@@ -16,6 +16,6 @@ export class ErrorHandlerService {
       msg='Erro ao processar serviço remoto. Tente novamente.';
       console.log('Ocorreu um erro',errorResponse);
     }
-    this.messageService.add({  severity: 'success', detail: 'Lançamento excluído com sucesso!' });
+    this.messageService.add({  severity: 'error', detail: msg });
   }
 }
