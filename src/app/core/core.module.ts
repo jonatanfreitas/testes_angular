@@ -35,7 +35,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
             })
           ],
   exports:[NavbarComponent,
-
     ToastModule,
     ConfirmDialogModule],
   providers: [
@@ -46,7 +45,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     ErrorHandlerService,
     MessageService,
     TranslateService
-
   ]
 })
 export class CoreModule { }
