@@ -1,3 +1,4 @@
+import { ErrorHandlerService } from './../../core/error-handler.service';
 import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { LazyLoadEvent, ConfirmationService } from 'primeng/api';
@@ -18,6 +19,7 @@ export class LancamentosPesquisaComponent implements OnInit {
   lancamentos = [];
   @ViewChild('tabela') grid!: Table;
   constructor(private lancamentoService: LancamentoService,
+              private errorHandler: ErrorHandlerService,
               private messageService: MessageService,
               private confirmation:ConfirmationService){}
 
@@ -36,7 +38,8 @@ export class LancamentosPesquisaComponent implements OnInit {
       // .then((lanc) => {this.lancamentos=lanc});
       .then(resultado => {this.lancamentos=resultado.lanc;
                           this.totalRegistros=resultado.total;
-                              });
+                              })
+      .catch(erro => this.errorHandler.handle(erro));
   }
   aoMudarPagina(event: LazyLoadEvent){
     const pagina = event!.first! / event!.rows!;
@@ -55,10 +58,8 @@ export class LancamentosPesquisaComponent implements OnInit {
     this.lancamentoService.excluir(lancamento.codigo)
     .then(()=>{
       if (this.grid.first===0){this.pesq();} else {this.grid.reset();}
-      this.messageService.add({  severity: 'success', detail: 'Lançamento excluído com sucesso!' })
-    }
-
-    )
+      this.messageService.add({  severity: 'success', detail: 'Lançamento excluído com sucesso!' })})
+    .catch(erro => this.errorHandler.handle(erro));
   }
 //   { tipo: 'DESPESA', descricao: 'Compra de pão', dataVencimento: new Date(2017, 5, 30),
 //   dataPagamento: null, valor: 4.55, pessoa: 'Padaria do José' },
