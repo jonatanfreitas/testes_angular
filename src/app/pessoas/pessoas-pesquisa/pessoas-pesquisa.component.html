@@ -38,7 +38,7 @@
               <!--<span [ngStyle]="{color: lancamento.tipo==='DESPESA'?'red':'blue'}">
               <span [style.color]="pessoas.ativo==='true'?'red':'blue'">
               </span>-->
-              <a href="javascript:;" [pTooltip]="pessoas.ativo ? 'Desativar' : 'Ativar'" tooltipPosition="top">
+              <a href="javascript:;" (click)="alterarStatus(pessoas)" [pTooltip]="pessoas.ativo ? 'Desativar' : 'Ativar'" tooltipPosition="top">
                 {{ pessoas.ativo ? 'Ativo' : 'Inativo' }}
                 </a>
 

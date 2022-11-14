@@ -59,5 +59,16 @@ export class PessoasPesquisaComponent  {
       this.messageService.add({  severity: 'success', detail: 'Lançamento excluído com sucesso!' })})
     .catch(erro => this.errorHandler.handle(erro));
   }
+  alterarStatus(pessoa:any){
+    const novoSatus = !pessoa.ativo;
+    this.pessoaService.mudarStatus(pessoa.codigo,novoSatus)
+    .then(()=>{
+      const acao = novoSatus ? 'ativada' : 'desativada';
+      // if (this.grid.first===0){this.pesq();} else {this.grid.reset();}
+      pessoa.ativo=novoSatus;
+      this.messageService.add({  severity: 'success', detail: `Pessoa ${acao} com sucesso!` })
 
+    })
+    .catch(erro => this.errorHandler.handle(erro));
+  }
 }
