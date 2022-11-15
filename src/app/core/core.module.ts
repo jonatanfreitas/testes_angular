@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 
 
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -26,6 +27,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   imports: [CommonModule,
             ToastModule,
             ConfirmDialogModule,
+            RouterModule,
             TranslateModule.forRoot({
               loader: {
                 provide: TranslateLoader,

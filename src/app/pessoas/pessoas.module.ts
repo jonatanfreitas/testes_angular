@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { SharedModule } from './../shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { InputMaskModule } from 'primeng/inputmask';
@@ -23,7 +24,7 @@ import { CommonModule } from '@angular/common';
     PessoaCadastroComponent
   ],
   imports: [
-    CommonModule,FormsModule,SharedModule,
+    CommonModule,FormsModule,SharedModule,RouterModule,
 
     TabViewModule,
     InputTextModule,

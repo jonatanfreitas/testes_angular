@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { SharedModule } from './../shared/shared.module';
 import { TabViewModule } from 'primeng/tabview';
 import { InputTextModule } from 'primeng/inputtext';
@@ -25,7 +26,7 @@ import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-ca
     LancamentosGridComponent],
   imports: [
     CommonModule,
-    FormsModule,SharedModule,
+    FormsModule,SharedModule,RouterModule,
 
     TabViewModule,
     InputTextModule,
