@@ -1,3 +1,7 @@
+import { PessoasPesquisaComponent } from './pessoas/pessoas-pesquisa/pessoas-pesquisa.component';
+import { LancamentoCadastroComponent } from './lancamentos/lancamento-cadastro/lancamento-cadastro.component';
+import { LancamentosPesquisaComponent } from './lancamentos/lancamentos-pesquisa/lancamentos-pesquisa.component';
+import { Routes, RouterModule } from '@angular/router';
 
 import { CoreModule } from './core/core.module';
 import { PessoasModule } from './pessoas/pessoas.module';
@@ -23,6 +27,12 @@ import {InputMaskModule} from 'primeng/inputmask';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+const routes: Routes=[
+  { path: 'lancamentos', component: LancamentosPesquisaComponent },
+  { path: 'lancamentos/novo', component: LancamentoCadastroComponent },
+  { path: 'pessoas', component: PessoasPesquisaComponent }
+];
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -30,7 +40,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     LancamentosModule,
     PessoasModule,
-    CoreModule,HttpClientModule,
+    CoreModule,
+    HttpClientModule,
+    RouterModule.forRoot(routes),
 
     AppRoutingModule,
     TabViewModule,
