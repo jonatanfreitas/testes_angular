@@ -1,3 +1,4 @@
+import { Pessoa } from './../core/model';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -57,6 +58,15 @@ mudarStatus(codigo:number, ativo:boolean): Promise<any>{
                                    .append('Content-Type','application/json');
   return this.http.put(`${this.pessoasUrl}/${codigo}/ativo`,ativo,{headers})
                   .toPromise();
+}
+
+adicionar(pessoa: Pessoa): Promise<any> {
+  const headers = new HttpHeaders()
+    .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+    .append('Content-Type', 'application/json');
+
+  return this.http.post(this.pessoasUrl, pessoa, { headers })
+    .toPromise();
 }
 
 }
