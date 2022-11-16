@@ -2,19 +2,19 @@
   <form #lancamentoForm="ngForm" autocomplete="off" (ngSubmit)="salvar(lancamentoForm)">
     <div class="grid">
       <div class="col-12">
-        <h1>Novo Lançamento</h1>
+        <h1>{{editando ? 'Edição de':'Novo'}} Lançamento</h1>
       </div>
       <div class="col-12">
         <p-selectButton [options]="tipos" #tipo name="tipo" [(ngModel)]="lancamento.tipo"></p-selectButton>
       </div>
       <div class="col-6 md:col-3 p-fluid">
-        <label>Vencimento</label>
-        <p-calendar [(ngModel)]="lancamento.dataVencimento" name="vencimento" ngModel #vencimento="ngModel" dateFormat="dd/mm/yy" [inline]="false" [readonlyInput]="false" [showIcon]="true"></p-calendar>
+        <label>Vencimento {{lancamento.dataVencimento}}</label>
+        <p-calendar [(ngModel)]="lancamento.dataVencimento" name="vencimento"  ngModel #vencimento="ngModel" dataType="string" dateFormat="dd/mm/yy"  [inline]="false" [readonlyInput]="false" [showIcon]="true"></p-calendar>
         <app-message [control]="vencimento.control" error="required" text="Informe uma data de vencimento"></app-message>
       </div>
       <div class="col-6 md:col-3 p-fluid">
-        <label>{{tipo.value === 'RECEITA' ? 'Recebimento':'Pagamento' }}</label>
-        <p-calendar dateFormat="dd/mm/yy" name="dataPagamento" [(ngModel)]="lancamento.dataPagamento"></p-calendar>
+        <label>{{tipo.value === 'RECEITA' ? 'Recebimento':'Pagamento' }}  {{lancamento.dataPagamento}}</label>
+        <p-calendar [(ngModel)]="lancamento.dataPagamento" name="dataPagamento" ngModel #dataPagamento="ngModel" dataType="string" dateFormat="dd/mm/yy" [inline]="false" [readonlyInput]="false" [showIcon]="true"></p-calendar>
       </div>
       <div class="col-12 md:col-9 p-fluid">
         <label>Descrição {{descricao.errors | json}}</label>

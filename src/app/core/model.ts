@@ -23,8 +23,8 @@ export class Lancamento {
   codigo?: number;
   tipo = 'RECEITA';
   descricao?: string;
-  dataVencimento?: Date;
-  dataPagamento?: Date;
+  dataVencimento?: string;
+  dataPagamento?: string;
   valor?: number;
   observacao?: string;
   pessoa = new Pessoa();
@@ -39,8 +39,8 @@ export class Lancamento {
       observacao: lancamento.observacao,
       pessoa: lancamento.pessoa,
       categoria: lancamento.categoria,
-      dataVencimento: moment(lancamento.dataVencimento).format('DD/MM/YYYY'),
-      dataPagamento: moment(lancamento.dataPagamento).format('DD/MM/YYYY')
+      dataVencimento: moment(lancamento.dataVencimento).format('MM/DD/YYYY'),
+      dataPagamento: moment(lancamento.dataPagamento).format('MM/DD/YYYY')
     };
   }
 }
