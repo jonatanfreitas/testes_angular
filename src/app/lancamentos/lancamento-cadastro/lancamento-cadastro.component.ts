@@ -5,8 +5,8 @@ import { PessoaService } from './../../pessoas/pessoa.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { CategoriaService } from './../../categorias/categoria.service';
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { ActivatedRoute, ActivationEnd } from '@angular/router';
+import { NgForm, FormControl } from '@angular/forms';
+import { ActivatedRoute, ActivationEnd, Router } from '@angular/router';
 
 
 @Component({
@@ -41,7 +41,8 @@ constructor(private categoriaService:CategoriaService,
             private lancamentoService:LancamentoService,
             private messageService: MessageService,
             private errorHandler: ErrorHandlerService,
-            private route: ActivatedRoute){}
+            private route: ActivatedRoute,
+            private router: Router){}
 ngOnInit(): void {
   const codigoLancamento = this.route.snapshot.params['codigo'];
   if (codigoLancamento){
@@ -86,11 +87,12 @@ adicionarLancamento(form: NgForm) {
   console.log(this.lancamento);
 
   this.lancamentoService.adicionar(this.lancamento)
-    .then(() => {
+    .then(lancamentoAdicionado => {
       this.messageService.add({ severity: 'success', detail: 'Lançamento adicionado com sucesso!' });
 
-      form.reset();
-      this.lancamento = new Lancamento();
+      // form.reset();
+      // this.lancamento = new Lancamento();
+      this.router.navigate(['/lancamentos',lancamentoAdicionado.codigo]);
     })
     .catch(erro => this.errorHandler.handle(erro));
 }
@@ -100,5 +102,10 @@ atualizarLancamento(form: NgForm) {
                                  this.messageService.add({severity:'success', detail: 'Lançamento alterado com sucesso!'});
                                 })
     .catch(erro => this.errorHandler.handle(erro));
+}
+novo (form: FormControl){
+  form.reset;
+  this.lancamento = new Lancamento;
+  this.router.navigate(['/lancamentos/novo']);
 }
 }
