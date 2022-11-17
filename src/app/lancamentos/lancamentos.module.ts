@@ -39,7 +39,8 @@ import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-ca
     CurrencyMaskModule,
     InputMaskModule,
   ],
-  exports:[LancamentoCadastroComponent,
-    LancamentosPesquisaComponent]
+  exports:[
+    // LancamentoCadastroComponent, LancamentosPesquisaComponent
+  ]
 })
 export class LancamentosModule { }

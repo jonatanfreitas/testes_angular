@@ -36,7 +36,8 @@ import { CommonModule } from '@angular/common';
     DropdownModule,
     CurrencyMaskModule,
     InputMaskModule
-  ],exports:[PessoasPesquisaComponent,
-    PessoaCadastroComponent]
+  ],exports:[
+    // PessoasPesquisaComponent,    PessoaCadastroComponent
+  ]
 })
 export class PessoasModule { }

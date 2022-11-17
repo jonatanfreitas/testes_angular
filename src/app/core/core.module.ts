@@ -14,6 +14,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe, registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 
 
 registerLocaleData(localePt, 'pt-BR');
@@ -23,7 +24,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 }
 
 @NgModule({
-  declarations: [NavbarComponent],
+  declarations: [NavbarComponent, PaginaNaoEncontradaComponent],
   imports: [CommonModule,
             ToastModule,
             ConfirmDialogModule,
