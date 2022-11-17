@@ -103,9 +103,11 @@ atualizarLancamento(form: NgForm) {
                                 })
     .catch(erro => this.errorHandler.handle(erro));
 }
-novo (form: FormControl){
+novo(form: NgForm) {
   form.reset;
-  this.lancamento = new Lancamento;
+  setTimeout(() => {
+    this.lancamento = new Lancamento();
+  }, 1);
   this.router.navigate(['/lancamentos/novo']);
 }
 }
