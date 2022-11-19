@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { MessageService } from 'primeng/api';
 import { LancamentoService } from './../lancamento.service';
 import { Lancamento } from './../../core/model';
@@ -42,21 +43,30 @@ constructor(private categoriaService:CategoriaService,
             private messageService: MessageService,
             private errorHandler: ErrorHandlerService,
             private route: ActivatedRoute,
-            private router: Router){}
+            private router: Router,
+            private title: Title){}
 ngOnInit(): void {
+  this.title.setTitle('Novo Lançamento');
   const codigoLancamento = this.route.snapshot.params['codigo'];
   if (codigoLancamento){
-    this.carregarLancamento(codigoLancamento)
+    this.carregarLancamento(codigoLancamento);
+
   }
   this.carregarCategorias();
   this.carregarPessoas();
+}
+atualizarTituloDescricao(){
+  this.title.setTitle(`Edição de Lançamento: ${this.lancamento.descricao}`);
 }
 get editando(){
   return Boolean(this.lancamento.codigo)
 }
 carregarLancamento(codigoLancamento:number){
   this.lancamentoService.buscarPorCodigo(codigoLancamento)
-  .then(lanc =>{this.lancamento = lanc; console.log(lanc)})
+  .then(lanc => { this.lancamento = lanc;
+                  this.atualizarTituloDescricao();
+                  console.log(lanc);
+                })
   .catch(erro => this.errorHandler.handle(erro));
 }
 carregarCategorias(){
@@ -100,6 +110,7 @@ atualizarLancamento(form: NgForm) {
   this.lancamentoService.atualizar(this.lancamento)
     .then((lanc: Lancamento) =>{ this.lancamento=lanc;
                                  this.messageService.add({severity:'success', detail: 'Lançamento alterado com sucesso!'});
+                                 this.atualizarTituloDescricao();
                                 })
     .catch(erro => this.errorHandler.handle(erro));
 }

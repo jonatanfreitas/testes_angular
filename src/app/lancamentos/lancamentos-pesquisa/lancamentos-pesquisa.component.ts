@@ -5,6 +5,7 @@ import { LazyLoadEvent, ConfirmationService } from 'primeng/api';
 import { ThisReceiver } from '@angular/compiler';
 import { Table } from 'primeng/table';
 import { MessageService } from 'primeng/api';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-lancamentos-pesquisa',
   templateUrl: './lancamentos-pesquisa.component.html',
@@ -21,9 +22,11 @@ export class LancamentosPesquisaComponent implements OnInit {
   constructor(private lancamentoService: LancamentoService,
               private errorHandler: ErrorHandlerService,
               private messageService: MessageService,
-              private confirmation:ConfirmationService){}
+              private confirmation:ConfirmationService,
+              private title: Title){}
 
   ngOnInit() {
+    this.title.setTitle('Pesquisa de Lançamentos');
     //this.pesq();
   }
 
