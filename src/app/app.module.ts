@@ -29,17 +29,6 @@ import {InputMaskModule} from 'primeng/inputmask';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-const routes: Routes=[
-  { path: '', redirectTo: 'lancamentos',pathMatch: 'full' },
-  { path: 'lancamentos', component: LancamentosPesquisaComponent },
-  { path: 'lancamentos/novo', component: LancamentoCadastroComponent },
-  { path: 'lancamentos/:codigo', component: LancamentoCadastroComponent },
-  { path: 'pessoas', component: PessoasPesquisaComponent },
-  { path: 'pessoas/novo', component: PessoaCadastroComponent},
-  { path: 'pagina-nao-encontrada', component: PaginaNaoEncontradaComponent},
-  { path: '**',  redirectTo: 'pagina-nao-encontrada'}
-];
-
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -49,9 +38,7 @@ const routes: Routes=[
     PessoasModule,
     CoreModule,
     HttpClientModule,
-    RouterModule.forRoot(routes),
-
-    AppRoutingModule,
+     AppRoutingModule,
     TabViewModule,
     InputTextModule,
     ButtonModule,
