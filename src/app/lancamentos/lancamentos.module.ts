@@ -16,6 +16,7 @@ import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
+import { LancamentosRoutingModule } from './lancamentos-routing.module';
 
 
 
@@ -38,6 +39,7 @@ import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-ca
     DropdownModule,
     CurrencyMaskModule,
     InputMaskModule,
+    LancamentosRoutingModule
   ],
   exports:[
     // LancamentoCadastroComponent, LancamentosPesquisaComponent
