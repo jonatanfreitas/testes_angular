@@ -10,7 +10,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private auth: AuthService) { }
+  constructor(public auth: AuthService) { }
 
   ngOnInit(): void {
   }
