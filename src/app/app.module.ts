@@ -1,3 +1,4 @@
+import { SegurancaModule } from './seguranca/seguranca.module';
 import { CoreModule } from './core/core.module';
 import { PessoasModule } from './pessoas/pessoas.module';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
@@ -29,6 +30,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     LancamentosModule,
     PessoasModule,
+    SegurancaModule,
     CoreModule,
     HttpClientModule,
      AppRoutingModule,

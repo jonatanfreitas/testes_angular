@@ -1,3 +1,4 @@
+import { AuthService } from './../seguranca/auth.service';
 import { RouterModule } from '@angular/router';
 
 
@@ -47,7 +48,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     DatePipe,
     ErrorHandlerService,
     MessageService,
-    TranslateService
+    TranslateService,
+    AuthService
   ]
 })
 export class CoreModule { }
