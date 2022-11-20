@@ -3,7 +3,7 @@
 
     <div class="grid">
       <div class="col-12">
-        <h1>Nova Pessoa</h1>
+        <h1>{{editando ? 'Edição de':'Novo'}} Pessoa</h1>
       </div>
 
       <div class="col-12 p-fluid">
@@ -57,11 +57,11 @@
       <div class="col-12">
         <span class="p-buttonset">
           <button pButton type="submit" label="Salvar" class="p-button-outlined p-button-rounded" pTooltip="Salvar" tooltipPosition="top"  [disabled]="!pessoasForm.valid"> </button>
-          <button pButton type="button" label="Novo" class="p-button-outlined p-button-rounded"  pTooltip="Novo" tooltipPosition="top"></button>
+          <button pButton type="button" (click)="novo(pessoasForm)" label="Novo" class="p-button-outlined p-button-rounded"  pTooltip="Novo" tooltipPosition="top"></button>
         </span>
 
       </div>
-      <a routerLink="/lancamentos">Voltar para a pesquisa</a>
+      <a routerLink="/pessoas">Voltar para a pesquisa</a>
     </div>
 
   </form>

@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { Table } from 'primeng/table';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { LazyLoadEvent, MessageService, ConfirmationService } from 'primeng/api';
@@ -24,7 +25,12 @@ export class PessoasPesquisaComponent  {
   constructor(private pessoaService: PessoaService,
               private errorHandler: ErrorHandlerService,
               private messageService: MessageService,
-              private confirmation:ConfirmationService){}
+              private confirmation:ConfirmationService,
+              private title: Title){}
+  ngOnInit() {
+    this.title.setTitle('Pesquisa de Pessoas');
+    //this.pesq();
+  }
 
   pesq(pagina=0){
     this.filtro.pagina=pagina;
@@ -37,7 +43,8 @@ export class PessoasPesquisaComponent  {
       // .then((lanc) => {this.lancamentos=lanc});
       .then(resultado => {this.pessoas=resultado.pessoasResp;
                           this.totalRegistros=resultado.total;
-                         });
+                         })
+      .catch(erro => this.errorHandler.handle(erro));
   }
   aoMudarPagina(event: LazyLoadEvent){
     const pagina = event!.first! / event!.rows!;

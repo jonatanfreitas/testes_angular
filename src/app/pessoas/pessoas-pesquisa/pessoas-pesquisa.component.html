@@ -22,6 +22,7 @@
       [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)" [responsive]="true" #tabela>
         <ng-template pTemplate="header">
           <tr>
+            <th class="col-data-header">Código</th>
             <th class="col-data-header">Nome</th>
             <th class="col-data-header">Cidade</th>
             <th class="col-data-header">Estado</th>
@@ -30,6 +31,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-pessoas>
           <tr>
+            <td>{{ pessoas.codigo }}</td>
             <td>{{ pessoas.nome }}</td>
             <td>{{ pessoas.cidade }}</td>
             <td>{{ pessoas.estado }}</td>
@@ -44,7 +46,7 @@
 
             </td>
             <td class="col-acoes">
-                <button pButton class="p-button-outlined p-button-rounded" icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></button>
+                <button pButton [routerLink]="['/pessoas',pessoas.codigo]" class="p-button-outlined p-button-rounded" icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></button>
                 <button pButton (click)="confirmarExclusao(pessoas)" class="p-button-outlined p-button-rounded" icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"></button>
             </td>
           </tr>
@@ -59,7 +61,7 @@
       </p-table>
     </div>
     <div class="col-12">
-      <button pButton type="button" routerLink="/pessoas/novo" label="Novo Lançamento" class="p-button-outlined"></button>
+      <button pButton type="button" routerLink="/pessoas/novo" label="Nova Pessoa" class="p-button-outlined"></button>
     </div>
   </div>
 </div>
