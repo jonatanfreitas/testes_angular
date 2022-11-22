@@ -7,6 +7,10 @@ import { LoginComponent } from './login-form/login.component';
 import { CommonModule } from '@angular/common';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 
+export function tokenGetter(): string {
+  return localStorage.getItem('token')!;
+}
+
 @NgModule({
   declarations: [
     LoginComponent,
@@ -17,11 +21,12 @@ import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
     ButtonModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: () => {
-          return '';
+        tokenGetter,
+        allowedDomains: ['localhost:8080'],
+        disallowedRoutes: ['http://localhost:8080/oauth/token']
         }
       }
-    }),
+    ),
   ],
   providers: [JwtHelperService]
 })

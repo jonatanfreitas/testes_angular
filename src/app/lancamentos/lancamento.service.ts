@@ -22,7 +22,7 @@ export class LancamentoService {
   constructor(private http: HttpClient, private datePipe: DatePipe) { }
 
   pesquisar(filtro: LancamentoFiltro): Promise<any> {
-    const headers = new HttpHeaders().append('Authorization','Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    //const headers = new HttpHeaders().append('Authorization','Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
     let params = new HttpParams()
                       .set('page',filtro.pagina)
                       .set('size',filtro.itensPorPagina);
@@ -37,7 +37,7 @@ export class LancamentoService {
       params = params.set('dataVencimentoAte', this.datePipe.transform(filtro.dataVencimentoFim, 'yyyy-MM-dd')!);
     }
 
-    return this.http.get(`${this.lancamentosUrl}?resumo`,{headers, params})
+    return this.http.get(`${this.lancamentosUrl}?resumo`,{ params})
                     .toPromise()
                     // .then((response:any)=>response['content']
                     .then((response:any)=>{
@@ -51,28 +51,26 @@ export class LancamentoService {
                     });
   }
   excluir(codigo:number): Promise<any>{
-    const headers = new HttpHeaders().append('Authorization','Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
-    return this.http.delete(`${this.lancamentosUrl}/${codigo}`,{headers})
+    //const headers = new HttpHeaders().append('Authorization','Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    return this.http.delete(`${this.lancamentosUrl}/${codigo}`)
       .toPromise();
   }
   adicionar(lancamento: Lancamento): Promise<any> {
-    console.log(Lancamento.toJson(lancamento));
-    const headers = new HttpHeaders()
-      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
-      .append('Content-Type', 'application/json');
+    // console.log(Lancamento.toJson(lancamento));
+    // const headers = new HttpHeaders()
+    //   .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+    //   .append('Content-Type', 'application/json');
 
-
-    return this.http.post(this.lancamentosUrl, Lancamento.toJson(lancamento), { headers })
-      .toPromise();
+    return this.http.post(this.lancamentosUrl, Lancamento.toJson(lancamento)).toPromise();
   }
 
   atualizar(lancamento: Lancamento): Promise<any> {
-    console.log((lancamento));
-    const headers = new HttpHeaders()
-      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
-      .append('Content-Type', 'application/json');
+    // console.log((lancamento));
+    // const headers = new HttpHeaders()
+    //   .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+    //   .append('Content-Type', 'application/json');
 
-    return this.http.put<Lancamento>(`${this.lancamentosUrl}/${lancamento.codigo}`,Lancamento.toJson(lancamento), { headers })
+    return this.http.put<Lancamento>(`${this.lancamentosUrl}/${lancamento.codigo}`,Lancamento.toJson(lancamento))
       .toPromise()
       .then((response: any) => {
         // this.converterStringsParaDatas([response]);
@@ -82,10 +80,10 @@ export class LancamentoService {
 
 
   buscarPorCodigo(codigo: number): Promise<any> {
-    const headers = new HttpHeaders()
-      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    // const headers = new HttpHeaders()
+    //   .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
-    return this.http.get(`${this.lancamentosUrl}/${codigo}`, { headers })
+    return this.http.get(`${this.lancamentosUrl}/${codigo}`)
       .toPromise()
       .then((response:any)=>{
       //  this.converterStringsParaDatas([response]);
