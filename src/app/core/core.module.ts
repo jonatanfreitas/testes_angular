@@ -16,6 +16,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe, registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 
 registerLocaleData(localePt, 'pt-BR');
@@ -49,7 +50,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     ErrorHandlerService,
     MessageService,
     TranslateService,
-    AuthService
+    AuthService,
+    JwtHelperService
   ]
 })
 export class CoreModule { }

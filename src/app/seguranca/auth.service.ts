@@ -1,6 +1,7 @@
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { ReplaySubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,12 @@ export class AuthService {
       })
       .catch(response => {
         console.log(response);
+        if(response.status === 400){
+          if (response.error.error === 'invalid_grant') {
+            return Promise.reject('Usuário ou senha inválida!');
+          }
+        }
+        return Promise.reject(response);
       });
   }
   public armazenarToken(token:string){
