@@ -1,3 +1,5 @@
+import { ErrorHandlerService } from './../error-handler.service';
+import { AuthService } from './../../seguranca/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent  {
-  exibindoMenu=false;
-
+  exibindoMenu: boolean = false;
+  usuarioLogado: string = ''
+  constructor(
+    private auth: AuthService,
+    private errorHandler: ErrorHandlerService,
+    ){
+      this.usuarioLogado = this.auth.jwtPayLoad?.nome;
+    }
 
 }
