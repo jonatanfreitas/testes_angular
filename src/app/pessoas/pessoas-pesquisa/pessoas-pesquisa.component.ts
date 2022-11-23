@@ -14,7 +14,7 @@ import { PessoaFiltro } from '../pessoa.service';
 export class PessoasPesquisaComponent  {
   totalRegistros =0;
   filtro = new PessoaFiltro();
-  pessoas = [];
+  pessoas: any[] = [];
   // { nome: 'Manoel Pinheiro', cidade: 'Uberlândia', estado: 'MG', ativo: true },
   //   { nome: 'Sebastião da Silva', cidade: 'São Paulo', estado: 'SP', ativo: false },
   //   { nome: 'Carla Souza', cidade: 'Florianópolis', estado: 'SC', ativo: true },
@@ -32,7 +32,7 @@ export class PessoasPesquisaComponent  {
     //this.pesq();
   }
 
-  pesq(pagina=0){
+  pesq(pagina: number = 0){
     this.filtro.pagina=pagina;
     // const filtro: LancamentoFiltro = {
     //   descricao: this.descricao,

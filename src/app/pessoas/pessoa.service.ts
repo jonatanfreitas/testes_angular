@@ -27,7 +27,7 @@ export class PessoaService {
       params = params.set('nome', filtro.nome);
     }
 
-    return this.http.get(`${this.pessoasUrl}?`)    //,{headers, params}
+    return this.http.get(`${this.pessoasUrl}?`, { params })    //,{headers, params}
                     .toPromise()
                     // .then((response:any)=>response['content']
                     .then((response:any)=>{
