@@ -38,6 +38,10 @@ export class AuthService {
         return Promise.reject(response);
       });
   }
+  temPermissao(permissao: string) {
+    return this.jwtPayLoad && this.jwtPayLoad.authorities.includes(permissao);
+  }
+
   public armazenarToken(token:string){
     this.jwtPayLoad = this.jwtHelper.decodeToken(token);
     console.log(this.jwtPayLoad);

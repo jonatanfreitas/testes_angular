@@ -16,5 +16,8 @@ export class NavbarComponent  {
     ){
       this.usuarioLogado = this.auth.jwtPayLoad?.nome;
     }
+    temPermissao(permissao: string) {
+      return this.auth.temPermissao(permissao);
+    }
 
 }
