@@ -1,3 +1,4 @@
+import { AuthService } from './../../seguranca/auth.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -23,6 +24,7 @@ export class LancamentosPesquisaComponent implements OnInit {
               private errorHandler: ErrorHandlerService,
               private messageService: MessageService,
               private confirmation:ConfirmationService,
+              private auth: AuthService,
               private title: Title){}
 
   ngOnInit() {
@@ -63,6 +65,9 @@ export class LancamentosPesquisaComponent implements OnInit {
       if (this.grid.first===0){this.pesq();} else {this.grid.reset();}
       this.messageService.add({  severity: 'success', detail: 'Lançamento excluído com sucesso!' })})
     .catch(erro => this.errorHandler.handle(erro));
+  }
+  naoTemPermissao(permissao: string) {
+    return !this.auth.temPermissao(permissao);
   }
 
 

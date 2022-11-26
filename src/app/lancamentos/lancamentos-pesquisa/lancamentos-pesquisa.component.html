@@ -53,7 +53,7 @@
             </td>
             <td class="col-acoes">
                 <button pButton [routerLink]="['/lancamentos',lancamento.codigo]"   class="p-button-outlined p-button-rounded" icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></button>
-                <button pButton (click)="confirmarExclusao(lancamento)" class="p-button-outlined p-button-rounded" icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"></button>
+                <button pButton (click)="confirmarExclusao(lancamento)" [disabled]="naoTemPermissao('ROLE_REMOVER_LANCAMENTO')" class="p-button-outlined p-button-rounded" icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"></button>
             </td>
           </tr>
         </ng-template>
