@@ -1,3 +1,4 @@
+import { AuthGuard } from './auth.guard';
 import { MoneyHttpInterceptor } from './money-http-interceptor';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -35,6 +36,6 @@ export function tokenGetter(): string {
       provide: HTTP_INTERCEPTORS,
       useClass: MoneyHttpInterceptor,
       multi: true
-    },]
+    },AuthGuard]
 })
 export class SegurancaModule { }

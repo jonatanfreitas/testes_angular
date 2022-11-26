@@ -17,6 +17,7 @@ import { CommonModule, DatePipe, registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { NaoAutorizadoComponent } from './nao-autorizado.component';
 
 
 registerLocaleData(localePt, 'pt-BR');
@@ -26,7 +27,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 }
 
 @NgModule({
-  declarations: [NavbarComponent, PaginaNaoEncontradaComponent],
+  declarations: [NavbarComponent, PaginaNaoEncontradaComponent, NaoAutorizadoComponent],
   imports: [CommonModule,
             ToastModule,
             ConfirmDialogModule,

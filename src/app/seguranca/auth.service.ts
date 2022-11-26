@@ -70,6 +70,15 @@ export class AuthService {
     return this.jwtPayLoad && this.jwtPayLoad.authorities.includes(permissao);
   }
 
+  temQualquerPermissao(roles: any) {
+    for (const role of roles) {
+      if (this.temPermissao(role)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   public armazenarToken(token:string){
     this.jwtPayLoad = this.jwtHelper.decodeToken(token);
     console.log(this.jwtPayLoad);
