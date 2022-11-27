@@ -252,3 +252,9 @@ antiga
 	ng build --environment=prod
 angular 14
 	ng build --configuration=production
+
+
+node server.js
+
+em package.json colocar 
+"heroku-postbuild": "ng build --configuration=production"
