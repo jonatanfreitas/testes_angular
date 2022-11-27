@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Lancamento } from './../core/model';
 import { DatePipe } from '@angular/common';
 import { Injectable } from '@angular/core';
@@ -17,9 +18,11 @@ export class LancamentoFiltro{
 })
 export class LancamentoService {
 
-  lancamentosUrl = 'http://localhost:8080/lancamentos';
+  lancamentosUrl :string;
 
-  constructor(private http: HttpClient, private datePipe: DatePipe) { }
+  constructor(private http: HttpClient, private datePipe: DatePipe) {
+    this.lancamentosUrl=`${environment.apiUrl}/lancamentos`;
+  }
 
   pesquisar(filtro: LancamentoFiltro): Promise<any> {
     //const headers = new HttpHeaders().append('Authorization','Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');

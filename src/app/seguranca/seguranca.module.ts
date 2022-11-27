@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { AuthGuard } from './auth.guard';
 import { MoneyHttpInterceptor } from './money-http-interceptor';
 import { ButtonModule } from 'primeng/button';
@@ -25,8 +26,8 @@ export function tokenGetter(): string {
     JwtModule.forRoot({
       config: {
         tokenGetter,
-        allowedDomains: ['localhost:8080'],
-        disallowedRoutes: ['http://localhost:8080/oauth/token']
+        allowedDomains: environment.tokenAllowedDomains,
+        disallowedRoutes: environment.tokenDisallowedRoutes
         }
       }
     ),
