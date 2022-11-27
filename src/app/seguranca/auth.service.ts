@@ -9,6 +9,7 @@ import { ReplaySubject } from 'rxjs';
 export class AuthService {
 
   oauthTokenUrl = 'http://localhost:8080/oauth/token';
+  tokensRevokeUrl = 'http://localhost:8080/tokens/revoke';
   jwtPayLoad: any;
   constructor(private http:HttpClient,
               private jwtHelper: JwtHelperService) {
@@ -92,5 +93,18 @@ export class AuthService {
     if (token) {
       this.armazenarToken(token);
     }
+  }
+  limparAccessToken() {
+    localStorage.removeItem('token');
+    this.jwtPayLoad = null;
+  }
+
+  logout() {
+    return this.http.delete(this.tokensRevokeUrl, { withCredentials: true })
+      .toPromise()
+      .then(() => {
+        console.log('Logout Realizado')
+        this.limparAccessToken();
+      });
   }
 }

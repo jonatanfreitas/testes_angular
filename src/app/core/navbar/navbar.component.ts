@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ErrorHandlerService } from './../error-handler.service';
 import { AuthService } from './../../seguranca/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -13,6 +14,7 @@ export class NavbarComponent  {
   constructor(
     private auth: AuthService,
     private errorHandler: ErrorHandlerService,
+    private router: Router
     ){
       this.usuarioLogado = this.auth.jwtPayLoad?.nome;
     }
@@ -21,5 +23,12 @@ export class NavbarComponent  {
     }
     criarNovoAccessToken() {
       this.auth.obterNovoAccessToken();
+    }
+    logout() {
+      this.auth.logout()
+        .then(() => {
+          this.router.navigate(['/login']);
+        })
+        .catch(erro => this.errorHandler.handle(erro));
     }
 }
