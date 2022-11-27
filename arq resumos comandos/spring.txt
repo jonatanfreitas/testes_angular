@@ -1,0 +1,24 @@
+404 error
+200 ok
+201 created
+409 conflict
+
+2xx
+4xx
+5xx
+hateoas
+
+idepotencia = metodo que é chamado mas nao faz nada
+
+put = usado para atualizar, utilizar para gravação
+
+get = idepotente, não faz nada no banco, só faz buscas
+
+post =  usado para inserir codigo
+
+ggas
+
+spring.jackson.deserialization.fail-on-unknown-properties=true
+
+
+$2a$10$rqfr9zOunv6uP8.NB4G6aO5ptw8dVBWAkvu9z7Al65EUnlYWLGZTO

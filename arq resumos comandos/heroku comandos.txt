@@ -1,0 +1,21 @@
+
+  heroku
+  mysql://r75kbo047v88as2m:e10d1cpn7fhfyd4m@t07cxyau6qg7o5nz.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/xtdvi04o7u0z5q80
+  
+  heroku config:set JDBC_DATABASE_URL=jdbc:mysql//t07cxyau6qg7o5nz.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/xtdvi04o7u0z5q80 JDBC_DATABASE_USERNAME=r75kbo047v88as2m JDBC_DATABASE_PASSWORD e10d1cpn7fhfyd4m
+  mysql://r75kbo047v88as2m:e10d1cpn7fhfyd4m@t07cxyau6qg7o5nz.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/xtdvi04o7u0z5q80  
+
+  heroku login
+  heroku config --app financeiroteste-api  //mostra as variaveis
+  heroku logs --tail
+  
+  mysql://r75kbo047v88as2m:ap5zlmxq9r9flavy@t07cxyau6qg7o5nz.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/xtdvi04o7u0z5q80
+  t07cxyau6qg7o5nz.cbetxkdyhwsb.us-east-1.rds.amazonaws.com
+  r75kbo047v88as2m
+  	ap5zlmxq9r9flavy
+	
+	xtdvi04o7u0z5q80
+	
+mysql://ynht4y4pipmhqqtd:z9hkwq83r7mou1l3@t07cxyau6qg7o5nz.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/bkf6zql96v7syec0	
+
+web java -Dserver.port=$PORT -Dspring.profiles.active=prod $JAVA_OPTS -jar target/financeiroteste*.jar

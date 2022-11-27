@@ -1,0 +1,254 @@
+npm -v
+node -v
+npm cahe clean
+nom install -g npm @8.19.1   //atualizar o npm
+sudo npm install -g @angular/cli
+
+ng version   //verificar versao do angular
+ng serve     //rodar o app angular 
+ng serve --port 8181     //rodar o app angular em outra porta
+ http://localhost:4200/
+
+npm install  instalar todas as dependencias do projeto
+
+ng g c bemvindo    //gerar o componente
+ng g c lancamentos-pesquisa
+ng g c --skip-tests bemvindo    //para gerar sem o arquivo spec
+
+ng new financeiroteste-ui
+
+npm install primeng --save       //componentes do angular
+npm install fontawesome --save   //instala icones
+
+interpolação
+componente              template
+             {{nome}}       -->
+           [prop]="nome"    -->
+        (click)="salvar()"  <--
+        [(ngModel)]="nome"  <-->
+		
+COMPONENTES  <lista-pessoas> </lista-pessoas>
+DIRETIVAS ESTRUTURAIS  <h2 *ngIf="logado">Olá {{nomeUsuario}}</h2>
+DIRETIVAS DE ATRIBUTOS <h2 [style.color]="'red'">Olá {{nomeUsuario}}</h2>
+					   <h2 atencao>Olá {{nomeUsuario}}</h2>
+					   
+https://randomuser.me/api/portraits/men/10.jpg
+
+node_modules/tslint/bin/tslint --project tslint.json
+
+alterar o formulario html
+  *ngFor
+  *ngIf
+  
+receber um parametro
+  @Input('obj') funcionario : any; //{id:1, nome: 'Joao'};
+retornar um objeto  
+  @Output() funcionarioAdicionado = new EventEmitter();
+  
+  
+estilos  [ngStyle]
+  <div class="card" [ngStyle]="getEstilosCartao()">  
+<span [style.color]="lancamento.tipo==='DESPESA'?'red':'blue'">
+  
+tslint - plugin que analisa o codigo e 
+editorconfig
+auto import
+
+https://material.angular.io/
+angular 2 materialize
+https://ng-bootstrap.github.io/#/components/modal/examples
+https://valor-software.com/ngx-bootstrap/#/
+
+https://www.primefaces.org/primeng/setup
+
+panel
+https://www.primefaces.org/showcase/ui/panel/grid.xhtml?jfwid=a49ac
+https://www.primefaces.org/primeflex/display
+
+
+
+criar uma diretiva
+ng g d campo-colorido
+
+
+
+private elementRef:ElementRef,
+private renderer:Renderer2
+
+
+escutar eventos
+HostListener
+  @HostListener('focus') aoGanharFoco(){
+    this.renderer.setStyle(this.elementRef.nativeElement, 'background-color','yellow');}
+
+para receber um parametro de entrada
+  @Input() cor = 'Yellow';
+  
+assim se passa a propriedade  
+  <input type="text" appCampoColorido2 cor="red" class="form-control" >
+  <input type="text" appCampoColorido2 [cor]="'blue'" class="form-control" >
+  
+  
+exportar componente para o formulario, ficando disponivel para acessar  
+  diretive.ts
+    selector: '[appCampoColorido2]',exportAs:'campoBtn'  
+  html
+    <input type="text" appCampoColorido2 #campo="campoBtn" class="form-control" >
+    <button type="button" class="btn btn-secondary" (click)="campo.colorir()">Colorir</button>
+
+  
+aula de pipe
+ver em site angular.io / refencia / pipe
+template driven forms
+reactive forms (model driven)
+
+
+
+nfNoForm - usado para nao usar o angular no form
+
+FormsModule  //import
+
+ <form #usuarioForm="ngForm" (ngSubmit)="salvar(usuarioForm)">
+
+<input type="text" class="form-control" name="nome" ngModel>
+
+
+required
+busque no site do angular o valid para ver os validadores existentes
+
+Touched:{{nome.touched}}  //campo foi tocado
+Pristine:{{nome.pristine}}//campo intacto
+Dirty:{{nome.dirty}}//campo foi alterado(é ao contrario da Pristine)
+
+
+classes css criadas pelo ng
+	ng-invalid
+	ng-valid
+	ng-untouched
+	ng-touched
+	ng-pristine
+	ng-dirty
+
+para o angular preencher a classe no input para mostrar com a mensagem em vermelha
+[class.is-invalid]="profissao.invalid && profissao.touched"
+
+para o angular preencher a classe no div de aviso para mostrar com mensagem em vermelha
+[class.invalid-feedback]="profissao.invalid && profissao.touched"
+
+
+
+MODULOS
+criando modulos no sistema
+ng g m botoes    //gerar um modulo
+ng g c botoes/botao-grande 
+
+para um componente ser utilizado fora do modulo, deve ser exportado: botoes.module.ts
+ exports: [BotaoGrandeComponent]
+ 
+ 
+core module 
+
+Mock é uma classe ficticia sem executar, usada para simular uma instancia sem executar
+
+injeçao de dependencias
+-em app.module.ts
+  providers: [FuncionarioService],
+-em app.component.ts    
+  constructor(private funcionarioService: FuncionarioService){ }
+  
+-em app.module.ts é possivel criar o "class provider" alterando a classe que sera injetada da seguinte forma  
+  providers: [{provide: FuncionarioService, useClass: FuncionarioAbreviadoService}],  
+  
+-injetor com provider por fabrica: quando precisar de uma instancia, o injetor deixa usar um procedimento que cria uma instancia
+  providers: [{provide: FuncionarioService, useFactory: criarFuncionarioService}],
+  
+-injetor com provider  por valor
+    providers: [FuncionarioService,LogService,{provide:'LogPrefixo',useValue:'LOG'}],
+  na classe o construtor fica da seguinte forma
+	constructor( @Inject('LogPrefixo') private prefixo: string ){}
+	
+-injetar serviço dentro de serviço
+ deve colocar o decorator antes da clase @Injectable()	
+   export class FuncionarioService{
+     constructor (private logService: LogService){}
+   }
+   
+   
+   
+npm install -g json-server
+json-server --watch db.json
+
+para get  localhost:3000\cidades\1
+
+para post, adicionar nova cidade, em aba Body selecione RAW, JSon 
+digite a informação: {"nome": "Mariana"}
+no caminho:          localhost:3000\cidades
+
+para put, alterar cidade, em aba Body selecione RAW, JSon 
+digite a informação: {"nome": "Mariana"}
+no caminho:          localhost:3000\cidades\8
+
+
+java -jar financeiroteste-0.0.1-SNAPSHOT.jar --spring.datasource.username=root --spring.datasource.password=Jcf492504 --spring.origin-permitida=http://localhost:4200
+C:\Users\Administrator\Documents\workspace-spring-tool-suite-4-4.14.0.RELEASE\financeiroteste\target
+
+java -jar C:\Users\Administrator\Documents\workspace-spring-tool-suite-4-4.14.0.RELEASE\financeiroteste\target\financeiroteste-0.0.1-SNAPSHOT.jar --spring.datasource.username=root --spring.datasource.password=Jcf492504 --spring.origin-permitida=http://localhost:4200
+
+
+no basic o login e senha é admin@algamoney.com:admin
+Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==
+
+executar back com o oauth
+--spring.profiles.active=oauth-security
+
+localhost:8080/lancamentos?resumo&descricao=Bahamas
+localhost:8080/lancamentos?resumo&dataVencimentoDe=2017-06-01&dataVencimentoAte=2017-06-30
+
+https://github.com/akserg/ng2-toasty
+
+npm install @ngx-translate/core --save
+npm install @ngx-translate/http-loader --save 
+
+ng g s core/error-handler
+
+no core module somente o appmodule importa ele
+
+duas formas de usar o routerLink
+routerLink="/lancamentos"
+[routerLink]="['/lancamentos',lancamento.codigo]" 
+
+arquivo para configurar rotas dentro dos modulos 
+lancamentos-routing.module.ts
+
+guard
+ng g g seguranca/auth
+
+
+
+menu lateral em html e css
+https://www.youtube.com/watch?v=ut69ramXTNc&t=720s
+
+
+
+https://jwt.io/
+segurança 
+
+login com oauth 
+curl --location --request POST 'http://localhost:8080/oauth/token' \
+--header 'Authorization: Basic YW5ndWxhcjpAbmd1bEByMA==' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'client=angular' \
+--data-urlencode 'username=admin@algamoney.com' \
+--data-urlencode 'password=admin' \
+--data-urlencode 'grant_type=password'
+
+
+ng g s seguranca/auth
+npm install --save @auth0/angular-jwt
+
+environment
+
+antiga
+	ng build --environment=prod
+angular 14
+	ng build --configuration=production

@@ -1,0 +1,69 @@
+jwt.io site para ler o token encoded
+
+
+login com oauth 
+curl --location --request POST 'http://localhost:8080/oauth/token' \
+--header 'Authorization: Basic YW5ndWxhcjpAbmd1bEByMA==' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'client=angular' \
+--data-urlencode 'username=admin@algamoney.com' \
+--data-urlencode 'password=admin' \
+--data-urlencode 'grant_type=password'
+
+
+este é o post para um novo token
+curl -X POST \
+  http://localhost:8080/oauth/token \
+  -H 'Accept: */*' \
+  -H 'Accept-Encoding: gzip, deflate' \
+  -H 'Authorization: Basic YW5ndWxhcjpAbmd1bEByMA==' \
+  -H 'Cache-Control: no-cache' \
+  -H 'Connection: keep-alive' \
+  -H 'Content-Length: 80' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -H 'Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkBhbGdhbW9uZXkuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImF0aSI6ImI2YTk3Y2VhLTM4OTMtNDk1My05ZGI5LWU2OTFlYmYzZDk4OSIsImV4cCI6MTU2NTIyMTQyMCwiYXV0aG9yaXRpZXMiOlsiUk9MRV9DQURBU1RSQVJfQ0FURUdPUklBIiwiUk9MRV9QRVNRVUlTQVJfUEVTU09BIiwiUk9MRV9SRU1PVkVSX1BFU1NPQSIsIlJPTEVfQ0FEQVNUUkFSX0xBTkNBTUVOVE8iLCJST0xFX1BFU1FVSVNBUl9MQU5DQU1FTlRPIiwiUk9MRV9SRU1PVkVSX0xBTkNBTUVOVE8iLCJST0xFX0NBREFTVFJBUl9QRVNTT0EiLCJST0xFX1BFU1FVSVNBUl9DQVRFR09SSUEiXSwianRpIjoiYTQ2M2U0NzAtMDE4OC00ZmExLTk1NWMtY2Q4MzIwMWQ2NjQxIiwiY2xpZW50X2lkIjoiYW5ndWxhciJ9.nTNDhCl2tMBs7raluW2lU9UpIa1WS7CXDv-lkVqgr0I' \
+  -H 'Host: localhost:8080' \
+  -H 'Postman-Token: b4839955-2fff-4614-aa53-d9b27cbc4020,98b00668-c329-4795-895a-7fde42bed491' \
+  -H 'User-Agent: PostmanRuntime/7.15.2' \
+  -H 'cache-control: no-cache' \
+  -d 'client=angular&username=admin%40algamoney.com&password=admin&grant_type=password'
+  
+  
+  localhost:8080/oauth/token
+  localhost:8080/tokens/revoke
+  localhost:8080/lancamentos
+  localhost:8080/lancamentos?resumo
+  
+  
+  este é o post para um refresh_token
+  
+  curl --location --request POST 'http://localhost:8080/oauth/token' \
+--header 'Authorization: Basic YW5ndWxhcjpAbmd1bEByMA==' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkBhbGdhbW9uZXkuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImF0aSI6IjZOcHNlcGlpNFUwclI3TFVVUHU0b1RzNkR6ZyIsImV4cCI6MTY1OTA0OTQwMywiYXV0aG9yaXRpZXMiOlsiUk9MRV9DQURBU1RSQVJfQ0FURUdPUklBIiwiUk9MRV9QRVNRVUlTQVJfUEVTU09BIiwiUk9MRV9SRU1PVkVSX1BFU1NPQSIsIlJPTEVfQ0FEQVNUUkFSX0xBTkNBTUVOVE8iLCJST0xFX1BFU1FVSVNBUl9MQU5DQU1FTlRPIiwiUk9MRV9SRU1PVkVSX0xBTkNBTUVOVE8iLCJST0xFX0NBREFTVFJBUl9QRVNTT0EiLCJST0xFX1BFU1FVSVNBUl9DQVRFR09SSUEiXSwianRpIjoiNmk5akZNdWpzZXVOOXRQMWpqRXNIWHZhU3VBIiwiY2xpZW50X2lkIjoiYW5ndWxhciJ9.87hFdiRah9hQs6w_VdlH-L9JdkQEVtRjzqCksLY0Aik' \
+--data-urlencode 'grant_type=refresh_token'
+  
+  
+  este é o delete 
+  
+  curl --location --request DELETE 'localhost:8080/tokens/revoke' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTg4ODY1MDUsInVzZXJfbmFtZSI6ImFkbWluQGFsZ2Ftb25leS5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiIzMHJ6elZyc0hpMXdwb05WYkJOMEl2ZjYtZGMiLCJjbGllbnRfaWQiOiJhbmd1bGFyIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl19.Ws025b3TgL-5oCqjR2nv2kVrk1UzUZyO3ZXzqqtGoOc'
+
+
+este é o get lancamentos com filtro da descricao
+curl --location --request GET 'localhost:8080/lancamentos?descricao=Bahamas' \
+--header 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTg5NjU5MjAsInVzZXJfbmFtZSI6ImFkbWluQGFsZ2Ftb25leS5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiJZZW50ZENXbW1wQVBXa1E0Snd6YTBYa2ZKWlEiLCJjbGllbnRfaWQiOiJhbmd1bGFyIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl19.kvoo92Cufw4dxoT5L5K3KpzfR-8SZ0n3aZp6neW6Mos'
+
+este é o novo access token para financeiroteste-api 
+curl --location --request POST 'https://financeiroteste-api.herokuapp.com/oauth/token' \
+--header 'Authorization: Basic YW5ndWxhcjpAbmd1bEByMA==' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkBhbGdhbW9uZXkuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImF0aSI6IktyTFl0RnR0N1A1WmxOZ1kwanpWM3dNc0lfSSIsImV4cCI6MTY2MTkxMzc3MSwiYXV0aG9yaXRpZXMiOlsiUk9MRV9DQURBU1RSQVJfQ0FURUdPUklBIiwiUk9MRV9QRVNRVUlTQVJfUEVTU09BIiwiUk9MRV9SRU1PVkVSX1BFU1NPQSIsIlJPTEVfQ0FEQVNUUkFSX0xBTkNBTUVOVE8iLCJST0xFX1BFU1FVSVNBUl9MQU5DQU1FTlRPIiwiUk9MRV9SRU1PVkVSX0xBTkNBTUVOVE8iLCJST0xFX0NBREFTVFJBUl9QRVNTT0EiLCJST0xFX1BFU1FVSVNBUl9DQVRFR09SSUEiXSwianRpIjoiYV9vMHJEd3hGaHJSSV8zQThXeDJveUZfc3ZBIiwiY2xpZW50X2lkIjoiYW5ndWxhciJ9.n-X2nVrG2gchC-ApRXWFi6s8m-ytvHe6cwnGSnHZBkE' \
+--data-urlencode 'client=angular' \
+--data-urlencode 'username=admin@algamoney.com' \
+--data-urlencode 'password=admin' \
+--data-urlencode 'grant_type=password'
+
+este é o   get de lancamentos 
+curl --location --request GET 'https://financeiroteste-api.herokuapp.com/lancamentos' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjE4Mjc0OTEsInVzZXJfbmFtZSI6ImFkbWluQGFsZ2Ftb25leS5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiJLckxZdEZ0dDdQNVpsTmdZMGp6VjN3TXNJX0kiLCJjbGllbnRfaWQiOiJhbmd1bGFyIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl19.KVVbA_gFQsnV2CAsEREFBwzUaewDjIEn549x2jK3DH4'

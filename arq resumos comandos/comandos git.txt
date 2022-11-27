@@ -1,0 +1,99 @@
+https://devhints.io/git-log-format
+git init
+
+git status
+
+git config --local user.name
+git config --local user.email
+git add .
+git commit -m "Criando arquivos"
+
+git log 
+git log --oneline
+git log -p
+git add .gitignore
+git log --pretty="format:%H"
+
+git init --bare  //essa opção cria um repositório somente para informar as alterações realizadas nos commits
+git remote //lista os servidores 
+git remote add local /c/sistema/   // adiciona um sevidor para armazenar
+git remote -v
+
+git clone /c/sistema/ projeto
+git remote rename origin local  //renomeia o nome do servidor 
+
+git push local master //envia para o repositorio 
+git pull local master //puxa do repositorio 
+
+git remote add origin https://github.com/jonatanfreitas/testes_springboot.git
+git push origin master //envia para o repositorio
+
+https://git-school.github.io/visualizing-git/
+
+git branch titulo
+git checkout titulo
+git checkout -b lista  //adiciona uma branch e faz checkout
+git merge titulo  // cria um commit para unir as atualizações 
+
+git log --grafh
+
+git rebase master  // aplica os commit de outras branch na branch atual
+
+git rebase -i ae61d11  // unindo os commit, selecione o commit anterior e após o comando, troque os pick por s. Ajuste a nomenclatura dos commit. :x para salvar 
+
+git pull local master //puxa do repositorio 
+git push local master //puxa do repositorio 
+
+vim index.html
+:q!  //usado para sair do editor
+:x  //usado para sair do editor vim
+
+removendo alterações
+git checkout -- index.html  //remove as alterações feitas no arquivo index.html antes do commit
+git reset HEAD index.html  // volta arquivo para o estado de inicio original, usado após dar o "git add", após este comando fazer o git checkout --
+git revert 4ff71dac366ad2e9d172e003a8dc13f099a21aef  //usado após ter feito um commit
+git restore --staged --source=44706c0 index.html // volta modificações para um commit especifico, aplicado somente para o index.html
+git restore --staged  //desfaz modificação realizada em arquivo
+git switch -c alteracoes //cria uma branch e seleciona ela para alteração
+git switch alteracoes  //seleciona a branch igual ao checkout 
+
+
+git stash
+git stash list
+git stash aply 0
+git stash drop 
+git stash pop
+
+git diff 9b9fa94..db39c1d  //mostra todas alterações entre dois commit
+git diff //mostra todas alterações antes do git add 
+
+git tag -a v0.1.0 -m "Lançando a primeira versão"
+git tag  //lista as tags
+git push local v0.1.0 //sobe a tag de versao
+
+
+/c/sistemateste/projectTeste/
+099a25d0ce184452fca5dc88a5927c7b03dcb3d0
+
+bitbucket e gitlab
+
+git cherry-pick 52abed7  //usado para puxar um  commit para a master
+
+git bisect start
+  git bisect bad HEAD
+  git bisect good c17076a
+  após esses comandos, deve ir dando bad ou good e conferir os arquivos
+    git bisect bad
+    git bisect good
+  para finalizar o bisect informe reset
+    git bisect reset
+
+git show ce9515c  //mostra as alterações de uma alteração informada
+git revert ce9515c //volta para o commit informado, caso tenha conflito, ajuste o arquivo, faça o add e commit
+
+git blame index.html    encontrar o reponsavel pelas alterações
+
+
+#!/bin/sh
+
+git --git-dir="C:\Users\ALURA\Documents\git-e-github\servidor" --work-tree="C:\Users\ALURA\Documents\git-e-github\web" checkout -f
