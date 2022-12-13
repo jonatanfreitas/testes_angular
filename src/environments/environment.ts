@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
+  production: true,
+  // apiUrl: 'https://financeiroteste-api.herokuapp.com',
   apiUrl: 'http://localhost:8080',
   tokenAllowedDomains: [  /localhost:8080/ ],
   tokenDisallowedRoutes: [/\/oauth\/token/],

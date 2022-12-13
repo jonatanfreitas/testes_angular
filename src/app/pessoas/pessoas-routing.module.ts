@@ -4,9 +4,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 const routes: Routes = [
-  { path: 'pessoas', component: PessoasPesquisaComponent },
-  { path: 'pessoas/novo', component: PessoaCadastroComponent },
-  { path: 'pessoas/:codigo', component: PessoaCadastroComponent },
+  { path: '', component: PessoasPesquisaComponent },
+  { path: 'novo', component: PessoaCadastroComponent },
+  { path: ':codigo', component: PessoaCadastroComponent },
 ];
 
 @NgModule({

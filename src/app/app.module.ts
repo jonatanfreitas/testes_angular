@@ -1,7 +1,5 @@
 import { SegurancaModule } from './seguranca/seguranca.module';
 import { CoreModule } from './core/core.module';
-import { PessoasModule } from './pessoas/pessoas.module';
-import { LancamentosModule } from './lancamentos/lancamentos.module';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -28,8 +26,6 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    LancamentosModule,
-    PessoasModule,
     SegurancaModule,
     CoreModule,
     HttpClientModule,

@@ -1,5 +1,5 @@
 export const environment = {
-  production: true,
+  production: false,
 
   apiUrl: 'https://financeiroteste-api.herokuapp.com:8080',
   // apiUrl: 'http://localhost:8080',
